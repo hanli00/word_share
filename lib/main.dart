@@ -1,47 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// Hi, I hate you!!
-// me too
-// OKAY!
-// hehehehe
+void main() => runApp(MyApp());
 
-void main() => runApp(MaterialApp(
-  home: Home(),
-));
-
-class Home extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('This is a App Bar'),
-        centerTitle: true,
-        backgroundColor: Colors.purple[600],
-      ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('hello!'),
-          TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                primary: Colors.amber,
-                backgroundColor: Colors.black,
-              ),
-              child: Text('button')),
-          Container(
-            color: Colors.cyan,
-            padding: EdgeInsets.all(30.0),
-            child: Text('inside containser'),
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Wordsharing'),
+          ),
+          body: Column(
+              children:[
+                Text('function'),
+                ElevatedButton(
+                    onPressed: vocabularylist(),
+                    child: Text('Vocabulary list')
+                ),
+                ElevatedButton(
+                    onPressed: null,
+                    child: Text('Test')
+                ),
+              ]
           )
-        ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Text('click'),
-      //   onPressed: () {},
-      //   backgroundColor: Colors.red[600],
-      //),
     );
   }
 }
+
+class vocabularylist extends StatelessWidget {
+  @override
+  Widget build(BuildContext) {
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('Vocabulary list'),
+            ),
+            body: Column(
+                children:[
+                  ElevatedButton(
+                      onPressed: null,
+                      child: Text('Back')
+                  ),
+                  ElevatedButton(
+                      onPressed: null,
+                      child: Text('+')
+                  ),
+                ]
+            )
+        )
+
+    )
+    )
+  }
+}
+
