@@ -8,16 +8,17 @@ class VocabularyList extends StatelessWidget {
         title: Text("Vocabulary List"),
       ),
       body: Column(
+
           children:[
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('back'),
+              child: Text('Default Lists'),
             ),
             ElevatedButton(
                 onPressed: null,
-                child: Text('+')
+                child: Text("User's Lists"),
             ),
           ]
       ),
