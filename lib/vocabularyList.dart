@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pickfile.dart';
 
 class VocabularyList extends StatelessWidget {
   @override
@@ -12,7 +13,10 @@ class VocabularyList extends StatelessWidget {
           children:[
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WordList()),
+                );
               },
               child: Text('Default Lists'),
             ),
