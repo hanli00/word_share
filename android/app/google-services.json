@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "124688333794",
+    "project_id": "wordshare-e8ede",
+    "storage_bucket": "wordshare-e8ede.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124688333794:android:d7d36cf0c8165ecf4657bb",
+        "android_client_info": {
+          "package_name": "com.example.word_sharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124688333794-2qe159iea75ntd7o8d09qdlul28naf78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.word_sharing",
+            "certificate_hash": "0983d38556f76a04ff5a7e5ff1f7ee36023da520"
+          }
+        },
+        {
+          "client_id": "124688333794-opbm09cinpdov4mm16alv6c1qemva8f5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd9sHQ62xmyH01u6m9D1V4TVInw7oTY6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124688333794-opbm09cinpdov4mm16alv6c1qemva8f5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

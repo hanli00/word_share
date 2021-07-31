@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
 import 'package:csv/csv.dart';
+import 'definition.dart';
 
 class WordList extends StatefulWidget {
   @override
@@ -22,6 +22,8 @@ class _WordListState extends State<WordList> {
 
   @override
   Widget build(BuildContext context) {
+    int INDEX;
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _loadCSV());
     return Scaffold(
       appBar: AppBar(
         title: Text("word"),
@@ -29,19 +31,30 @@ class _WordListState extends State<WordList> {
       body: ListView.builder(
         itemCount: _data.length,
         itemBuilder: (_, index) {
+          INDEX = index;
           return Card(
             margin: const EdgeInsets.all(3),
             color: index == 0 ? Colors.amber : Colors.white,
             child: ListTile(
-              leading: Text(_data[index][0].toString()),
+              leading: ElevatedButton(
+                child: Text(_data[index][0].toString()),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Definition()),
+                  );
+                },
+              ),
+              //Text(_data[index][0].toString()),
               title: Text(_data[index][1]),
-              trailing: Text(_data[index][2].toString()),
+              //trailing: Text(_data[index][2].toString()),
             ),
           );
         },
       ),
-      floatingActionButton:
-      FloatingActionButton(child: Icon(Icons.add), onPressed: _loadCSV),
+
+      // floatingActionButton:
+      // FloatingActionButton(child: Icon(Icons.add), onPressed: _loadCSV),
     );
   }
 }
