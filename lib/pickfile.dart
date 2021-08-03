@@ -5,40 +5,44 @@ import 'definition.dart';
 
 class WordList extends StatefulWidget {
   @override
-  _WordListState createState() => _WordListState();
+  WordListState createState() => WordListState();
 }
 
-class _WordListState extends State<WordList> {
-  List<List<dynamic>> _data = [];
+class WordListState extends State<WordList> {
+  var INDEX = -1;
+  List<List<dynamic>> data = [];
 
   // This function is triggered when the floating button is pressed
   void _loadCSV() async {
     final _rawData = await rootBundle.loadString("assets/word1200.csv");
-    List<List<dynamic>> _listData = CsvToListConverter().convert(_rawData);
+    List<List<dynamic>> listData = CsvToListConverter().convert(_rawData);
     setState(() {
-      _data = _listData;
+      data = listData;
     });
+  }
+
+  int indexcount() {
+    INDEX = INDEX + 1;
+    return INDEX;
   }
 
   @override
   Widget build(BuildContext context) {
-    int INDEX;
     WidgetsBinding.instance!.addPostFrameCallback((_) => _loadCSV());
     return Scaffold(
       appBar: AppBar(
-        title: Text("word"),
+        title: Text('Word'),
       ),
       body: ListView.builder(
-        itemCount: _data.length,
-        itemBuilder: (_, index) {
-          INDEX = index;
+        itemCount: data.length,
+        itemBuilder: (_, INDEX) {
           return Card(
             margin: const EdgeInsets.all(3),
-            color: index == 0 ? Colors.amber : Colors.white,
+            color: indexcount() == 0 ? Colors.amber : Colors.white,
             child: ListTile(
               leading: ElevatedButton(
-                child: Text(_data[index][0].toString()),
-                onPressed: () {
+                child: Text([INDEX][0].toString()),
+                onPressed:() {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Definition()),
@@ -46,13 +50,12 @@ class _WordListState extends State<WordList> {
                 },
               ),
               //Text(_data[index][0].toString()),
-              title: Text(_data[index][1]),
-              //trailing: Text(_data[index][2].toString()),
+              title: Text(data[INDEX][1]),
+              trailing: Text(data[INDEX][2].toString()),
             ),
           );
         },
       ),
-
       // floatingActionButton:
       // FloatingActionButton(child: Icon(Icons.add), onPressed: _loadCSV),
     );
