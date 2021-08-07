@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class Test extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class TestState extends State<Test> {
     'dog',
     'egg',
   ];
+  var asked = List.filled(1, 0, growable: false);
 
   void scoreadd(){
     setState(() {
@@ -23,6 +25,10 @@ class TestState extends State<Test> {
         questionindex();
       }
     });
+  }
+
+  int Randnum(List<String> list){
+    return Random().nextInt(list.length);
   }
 
   void questionindex(){
@@ -35,24 +41,38 @@ class TestState extends State<Test> {
 
   @override
   Widget build(BuildContext context){
+    var randnum = Randnum(questions);
+    for (int i = 0; i < 10; i++){
+      if(randnum == i){
+        break;
+      } else {
+        asked.add(i);
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Test'),
       ),
       body: Column(
         children: [
-          Text(questions[index]),
-          Row(
-            children: [
-              ElevatedButton(
-                  onPressed: scoreadd,
-                  child: Text('O')
-              ),
-              ElevatedButton(
-                  onPressed: questionindex,
-                  child: Text('X')
-              ),
-            ]
+          Text(questions[randnum]),
+          Center(
+            child: Row(
+                children: [
+                  ElevatedButton(
+                      child: Text('O'),
+                      onPressed: (){
+                        scoreadd();
+                      }
+                  ),
+                  ElevatedButton(
+                      child: Text('X'),
+                      onPressed: () {
+                        questionindex();
+                      }
+                  ),
+                ]
+            ),
           ),
           Text(score.toString()),
         ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-/*
-class Test extends SearchDelegate <String> {
+import 'pickfile.dart';
+
+class Search extends SearchDelegate <String> {
   String searchHint = "請輸入搜尋內容...";
   var sourceList = [
     "dart",
@@ -54,7 +55,7 @@ class Test extends SearchDelegate <String> {
   ///展示搜尋結果
   @override
   Widget buildResults(BuildContext context) {
-    List<String> result = List();
+    List<String> result = ['result1','result2'];
     ///模擬搜尋過程
     for (var str in sourceList){
       ///query 就是輸入框的 TextEditingController
@@ -102,4 +103,3 @@ class Test extends SearchDelegate <String> {
     );
   }
 }
-*/
