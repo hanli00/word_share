@@ -16,7 +16,7 @@ class TestState extends State<Test> {
     'dog',
     'egg',
   ];
-  var asked = List.filled(1, 0, growable: false);
+  var asked = List.filled(1, 0, growable: true);
 
   void scoreadd(){
     setState(() {
@@ -27,8 +27,17 @@ class TestState extends State<Test> {
     });
   }
 
-  int Randnum(List<String> list){
-    return Random().nextInt(list.length);
+  String Randnum(List<String> list){
+    int randnum;
+    String question;
+    if (list.length != 0){
+      randnum = Random().nextInt(list.length);
+      question = list[randnum];
+      list.removeAt(randnum);
+    } else {
+      question = '0';
+    }
+    return question;
   }
 
   void questionindex(){
@@ -39,23 +48,26 @@ class TestState extends State<Test> {
     });
   }
 
+  String questioncontent(String question){
+    String finish = 'finish';
+    String indexquestion = '${index+1} ${question}';
+    if (index == 5){
+      return finish;
+    } else {
+      return indexquestion;
+    }
+  }
+
   @override
   Widget build(BuildContext context){
-    var randnum = Randnum(questions);
-    for (int i = 0; i < 10; i++){
-      if(randnum == i){
-        break;
-      } else {
-        asked.add(i);
-      }
-    }
+    var question = Randnum(questions);
     return Scaffold(
       appBar: AppBar(
         title: Text('Test'),
       ),
       body: Column(
         children: [
-          Text(questions[randnum]),
+          Text(questioncontent(question)),
           Center(
             child: Row(
                 children: [
