@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'test.dart';
 
 class Quiz extends StatelessWidget {
   @override
@@ -11,10 +12,13 @@ class Quiz extends StatelessWidget {
       body: Column(
           children:[
             ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed:() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Test()),
+                );
               },
-              child: Text('back'),
+              child: Text('Test'),
             ),
             ElevatedButton(
                 onPressed: null,
