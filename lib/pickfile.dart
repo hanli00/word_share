@@ -58,7 +58,7 @@ class WordListState extends State<WordList> {
                     onPressed:() {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Definition()),
+                        MaterialPageRoute(builder: (context) => Definition(index, data)),
                       );
                     },
                   ),
