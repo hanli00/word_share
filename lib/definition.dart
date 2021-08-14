@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'pickfile.dart';
 
 class Definition extends StatefulWidget{
+  Definition(this.INDEX, this.data);
+  int INDEX;
+  List<List<dynamic>> data = [];
   @override
-  DefinitionState createState() => DefinitionState();
+  DefinitionState createState() => DefinitionState(INDEX, data);
 }
 
 class DefinitionState extends State<Definition> {
-  var INDEX = WordListState().INDEX;
+  DefinitionState(this.INDEX, this.data);
+  var INDEX;
+  List<List<dynamic>> data = [];
+  //= WordListState().INDEX;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
         title: Text(INDEX.toString()),
     ),
-        body: //Text('b'),
-              Text(WordListState().data.toString()),
+        body: Column(
+          children: [
+            Text(data[INDEX][1]),
+            Text(data[INDEX][2].toString()),
+          ],
+        )
     );
   }
 }

@@ -20,7 +20,7 @@ class TestState extends State<Test> {
 
   void scoreadd(){
     setState(() {
-      if (index < 4) {
+      if (index < 5) {
         score = score + 1;
         questionindex();
       }
@@ -42,7 +42,7 @@ class TestState extends State<Test> {
 
   void questionindex(){
     setState(() {
-      if (index < 4){
+      if (index < 5){
         index = index + 1;
       }
     });
