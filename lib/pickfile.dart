@@ -14,6 +14,7 @@ class WordList extends StatefulWidget {
 
 class WordListState extends State<WordList> {
   var INDEX = -1;
+
   List<List<dynamic>> data = [];
 
   // This function is triggered when the floating button is pressed
@@ -24,6 +25,7 @@ class WordListState extends State<WordList> {
       data = listData;
     });
   }
+
 
   void indexcount() {
     setState(() {
