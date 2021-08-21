@@ -1,13 +1,10 @@
-import 'dart:async';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:word_share/LearnNewWord.dart';
 import 'vocabularyList.dart';
 import 'quiz.dart';
+import 'package:csv/csv.dart';
+import 'package:flutter/services.dart' show rootBundle;
+
 
 void main() {
   runApp(MaterialApp(
@@ -16,9 +13,26 @@ void main() {
   ));
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget{
+  @override
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  List<List<dynamic>> data = [];
+
+  // This function is triggered when the floating button is pressed
+  void loadCSV() async {
+    final rawData = await rootBundle.loadString("assets/word1200.csv");
+    List<List<dynamic>> listData = CsvToListConverter().convert(rawData);
+    setState(() {
+      data = listData;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) => loadCSV());
     return Scaffold(
       appBar: AppBar(
         title: Text('Word Sharing'),
@@ -47,7 +61,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                  Navigator.push(
                    context,
-                 MaterialPageRoute(builder: (context) => Quiz()),
+                 MaterialPageRoute(builder: (context) => Quiz(data)),
                  );
               },
               ),
@@ -57,9 +71,10 @@ class HomePage extends StatelessWidget {
               child: ElevatedButton(
                 child: Text('Learn New Words'),
                 onPressed: () {
+                  print(data.length);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LearnNewWords()),
+                    MaterialPageRoute(builder: (context) => LearnNewWords(data)),
                   );
                 },
               ),

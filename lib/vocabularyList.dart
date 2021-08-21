@@ -9,7 +9,6 @@ class VocabularyList extends StatelessWidget {
         title: Text("Vocabulary List"),
       ),
       body: Column(
-
           children:[
             ElevatedButton(
               onPressed: () {
