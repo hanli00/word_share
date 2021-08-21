@@ -12,7 +12,6 @@ class DefinitionState extends State<Definition> {
   DefinitionState(this.INDEX, this.data);
   var INDEX;
   List<List<dynamic>> data = [];
-  //= WordListState().INDEX;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'test.dart';
 
 class Quiz extends StatelessWidget {
+  Quiz(this.data);
+  List<List<dynamic>> data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +17,7 @@ class Quiz extends StatelessWidget {
               onPressed:() {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => Test(data)),
                 );
               },
               child: Text('Test'),
