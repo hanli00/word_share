@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class Test extends StatefulWidget {
+  Test(this.data);
+  List<List<dynamic>> data;
   @override
-  TestState createState() => TestState();
+  TestState createState() => TestState(data);
 }
 
 class TestState extends State<Test> {
+  TestState(this.data);
+  List<List<dynamic>> data;
   var index = 0;
   var score = 0;
   var questions = [
@@ -27,15 +31,16 @@ class TestState extends State<Test> {
     });
   }
 
-  String Randnum(List<String> list){
+  List<String> Randnum(List<List<dynamic>> list){
     int randnum;
-    String question;
+    List<String> question = ['',''];
     if (list.length != 0){
       randnum = Random().nextInt(list.length);
-      question = list[randnum];
+      question[0] = list[randnum][1];
+      question[1] = list[randnum][2];
       list.removeAt(randnum);
     } else {
-      question = '0';
+      question = [];
     }
     return question;
   }
@@ -48,9 +53,9 @@ class TestState extends State<Test> {
     });
   }
 
-  String questioncontent(String question){
+  String questioncontent(List<String> question){
     String finish = 'finish';
-    String indexquestion = '${index+1} ${question}';
+    String indexquestion = '${index+1} ${question[0]}\n ${question[1]}';
     if (index == 5){
       return finish;
     } else {
@@ -60,7 +65,7 @@ class TestState extends State<Test> {
 
   @override
   Widget build(BuildContext context){
-    var question = Randnum(questions);
+    var question = Randnum(data);
     return Scaffold(
       appBar: AppBar(
         title: Text('Test'),
@@ -86,7 +91,7 @@ class TestState extends State<Test> {
                 ]
             ),
           ),
-          Text(score.toString()),
+          Text('Score: ${score.toString()}'),
         ],
       ),
     );

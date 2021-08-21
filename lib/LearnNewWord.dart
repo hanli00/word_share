@@ -3,58 +3,54 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class LearnNewWords extends StatefulWidget{
+  LearnNewWords(this.data);
+  List<List<dynamic>> data;
   @override
-  LearnNewWordsState createState() => LearnNewWordsState();
+  LearnNewWordsState createState() => LearnNewWordsState(data);
 }
 
 class LearnNewWordsState extends State<LearnNewWords> {
+  LearnNewWordsState(this.data);
+  List<List<dynamic>> data;
   var TimeA = DateTime.now();
   var times = 0;
   var finish = '';
-  var questions = [
-  'apple',
-  'banana',
-  'candy',
-  'dog',
-  'egg',
-  ];
-  var word = [
-    ['apple','蘋果'],
-    ['banana','香蕉'],
-    ['candy','糖果'],
-    ['dog','狗狗'],
-    ['egg','雞蛋'],
-  ];
 
-  List<String> Randnum(List<List<String>> list){
+  List<dynamic> Randnum(List<List<dynamic>> list){
     int randnum;
-    List<String> question = [];
+    List<dynamic> question = [];
     if (list.length != 0){
       randnum = Random().nextInt(list.length);
       question = list[randnum];
       list.removeAt(randnum);
-    } else {
+    } else if (finish.isEmpty){
       question = ['You have learnt all the words.',''];
+    } else {
+      question = ['','',''];
     }
     return question;
   }
 
   void Times(){
-    setState(() {
-      times = times + 1;
-    });
+    if (data.length != 0){
+      print(data[1][1]);
+      print('aaaaaaaaaaaa');
+      setState(() {
+        times = times + 1;
+      });
+    }
   }
 
   void Finish(){
     setState(() {
-      finish = 'You have learnt ${times} words.';
-      word = [];
+      finish = 'You have learnt ${times+1} words.';
+      data = [];
     });
   }
 
   @override
   Widget build(BuildContext context){
-    var NewWord = Randnum(word);
+    var NewWord = Randnum(data);
     return Scaffold(
       appBar: AppBar(
         title: Text(TimeA.toString()),
@@ -62,10 +58,12 @@ class LearnNewWordsState extends State<LearnNewWords> {
       ),
       body: Column(
         children: [
-          Text(NewWord[0]),
           Text(NewWord[1]),
+          Text(NewWord[2]),
           ElevatedButton(
               onPressed: (){
+                print(times);
+                print(data.length);
                 Times();
               },
               child: Text('Next')

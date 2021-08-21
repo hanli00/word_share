@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
-import 'package:word_share/search.dart';
-import 'package:word_share/test.dart';
 import 'definition.dart';
 import 'search.dart';
 
@@ -13,7 +11,6 @@ class WordList extends StatefulWidget {
 }
 
 class WordListState extends State<WordList> {
-  var INDEX = -1;
 
   List<List<dynamic>> data = [];
 
@@ -26,6 +23,15 @@ class WordListState extends State<WordList> {
     });
   }
 
+
+  List<List<String>> EnglishData(List<List<dynamic>> Data) {
+    List<List<String>> english = [[],[]];
+    for (int i = 0; i < Data.length - 1; i = i + 1){
+      english[0].add(i.toString());
+      english[1].add(Data[i + 1][1]);
+    }
+    return english;
+  }
 
   void indexcount() {
     setState(() {
@@ -42,7 +48,9 @@ class WordListState extends State<WordList> {
         actions: [
           IconButton(
               onPressed: (){
-                showSearch(context: context, delegate: Search());
+                showSearch(
+                    context: context,
+                    delegate: Search(EnglishData(data),EnglishData(data), data));
               },
               icon: Icon(Icons.search),
           )
@@ -56,7 +64,7 @@ class WordListState extends State<WordList> {
                 color: index == 0 ? Colors.amber : Colors.white,
                 child: ListTile(
                   leading: ElevatedButton(
-                    child: Text([index][0].toString()),
+                    child: Text(data[index][0].toString()),
                     onPressed:() {
                       Navigator.push(
                         context,

@@ -23,6 +23,22 @@ class DefinitionState extends State<Definition> {
   var pronounce;
   var mp3_url;
   List<List<dynamic>> data = [];
+
+
+  void INDEXIncrease(){
+    setState(() {
+      INDEX = INDEX + 1;
+    });
+  }
+
+  void INDEXDecrease(){
+    setState(() {
+      INDEX = INDEX - 1;
+    });
+  }
+
+ 
+
   //= WordListState().INDEX;
   void play(String url) async {
     AudioPlayer audioPlayer = AudioPlayer();
@@ -129,6 +145,22 @@ class DefinitionState extends State<Definition> {
                 ],
               ),
               Text(data[INDEX][2].toString()),
+              Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    INDEXIncrease();
+                  },
+                  child: Text('Next'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    INDEXDecrease();
+                  },
+                  child: Text('Back'),
+                )
+              ]
+            )
             ],
           )
       );
@@ -151,6 +183,22 @@ class DefinitionState extends State<Definition> {
                 ],
               ),
               Text(data[INDEX][2].toString()),
+              Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    INDEXIncrease();
+                  },
+                  child: Text('Next'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    INDEXDecrease();
+                  },
+                  child: Text('Back'),
+                )
+              ]
+            )
             ],
           )
 
