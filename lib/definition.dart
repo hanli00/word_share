@@ -41,8 +41,6 @@ class DefinitionState extends State<Definition> {
     // get word definition entry
     final word = await dictionary.entries.search(wordString).then((value) => value!);
 
-
-
     // get phrases
     final phrases = word.phrases.values.map((phrases) => phrases).expand((phrases) => phrases).toList();
 
