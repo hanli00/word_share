@@ -12,6 +12,19 @@ class DefinitionState extends State<Definition> {
   DefinitionState(this.INDEX, this.data);
   var INDEX;
   List<List<dynamic>> data = [];
+
+  void INDEXIncrease(){
+    setState(() {
+      INDEX = INDEX + 1;
+    });
+  }
+
+  void INDEXDecrease(){
+    setState(() {
+      INDEX = INDEX - 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +35,22 @@ class DefinitionState extends State<Definition> {
           children: [
             Text(data[INDEX][1]),
             Text(data[INDEX][2].toString()),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    INDEXIncrease();
+                  },
+                  child: Text('Next'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    INDEXDecrease();
+                  },
+                  child: Text('Back'),
+                )
+              ]
+            )
           ],
         )
     );
