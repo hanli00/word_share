@@ -11,6 +11,7 @@ class WordList extends StatefulWidget {
 }
 
 class WordListState extends State<WordList> {
+
   List<List<dynamic>> data = [];
 
   // This function is triggered when the floating button is pressed
@@ -22,6 +23,7 @@ class WordListState extends State<WordList> {
     });
   }
 
+
   List<List<String>> EnglishData(List<List<dynamic>> Data) {
     List<List<String>> english = [[],[]];
     for (int i = 0; i < Data.length - 1; i = i + 1){
@@ -29,6 +31,12 @@ class WordListState extends State<WordList> {
       english[1].add(Data[i + 1][1]);
     }
     return english;
+  }
+
+  void indexcount() {
+    setState(() {
+      INDEX = INDEX + 1;
+    });
   }
 
   @override
