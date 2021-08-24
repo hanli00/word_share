@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:oxford_dictionary/oxford_dictionary.dart';
 import 'dart:convert' show utf8;
@@ -36,8 +35,6 @@ class DefinitionState extends State<Definition> {
       INDEX = INDEX - 1;
     });
   }
-
- 
 
   //= WordListState().INDEX;
   void play(String url) async {
@@ -163,44 +160,42 @@ class DefinitionState extends State<Definition> {
           )
       );
     }
-      else
+    else
       WidgetsBinding.instance!.addPostFrameCallback((_) =>print("hello~~"));
-      return Scaffold(
-          appBar: AppBar(
-            title: Text(INDEX.toString()),
-          ),
-          body: Column(
-            children: [
-              Text(data[INDEX][1]),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(pronounce),
-                  IconButton(onPressed: (){play(mp3_url);},
-                      icon: Icon(Icons.volume_up))
-                ],
-              ),
-              Text(data[INDEX][2].toString()),
-              Row(
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(INDEX.toString()),
+        ),
+        body: Column(
+          children: [
+            Text(data[INDEX][1]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    INDEXIncrease();
-                  },
-                  child: Text('Next'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    INDEXDecrease();
-                  },
-                  child: Text('Back'),
-                )
-              ]
+                Text(pronounce),
+                IconButton(onPressed: (){play(mp3_url);},
+                    icon: Icon(Icons.volume_up))
+              ],
+            ),
+            Text(data[INDEX][2].toString()),
+            Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      INDEXIncrease();
+                      },
+                    child: Text('Next'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      INDEXDecrease();
+                      },
+                    child: Text('Back'),
+                  )
+                ]
             )
-            ],
-          )
-
-      );
-    }
-
+          ],
+        )
+    );
+  }
 }
