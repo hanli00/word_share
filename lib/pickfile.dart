@@ -33,12 +33,6 @@ class WordListState extends State<WordList> {
     return english;
   }
 
-  void indexcount() {
-    setState(() {
-      INDEX = INDEX + 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) => loadCSV());

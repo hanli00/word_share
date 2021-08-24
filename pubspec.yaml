@@ -44,6 +44,7 @@ dependencies:
   owlbot_dart: ^2.0.0
   oxford_dictionary: ^2.0.3
   audioplayers: ^0.19.1
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
