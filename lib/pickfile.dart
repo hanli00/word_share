@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
+import 'package:word_share/vocabularyList.dart';
 import 'definition.dart';
 import 'search.dart';
 
@@ -16,7 +17,7 @@ class WordListState extends State<WordList> {
 
   // This function is triggered when the floating button is pressed
   void loadCSV() async {
-    final rawData = await rootBundle.loadString("assets/word1200.csv");
+    final rawData = await rootBundle.loadString(VocabularyList.csvfile);
     List<List<dynamic>> listData = CsvToListConverter().convert(rawData);
     setState(() {
       data = listData;
@@ -33,11 +34,7 @@ class WordListState extends State<WordList> {
     return english;
   }
 
-  void indexcount() {
-    setState(() {
-      INDEX = INDEX + 1;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {

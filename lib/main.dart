@@ -22,17 +22,17 @@ class HomePageState extends State<HomePage> {
   List<List<dynamic>> data = [];
 
   // This function is triggered when the floating button is pressed
-  void loadCSV() async {
-    final rawData = await rootBundle.loadString("assets/word1200.csv");
-    List<List<dynamic>> listData = CsvToListConverter().convert(rawData);
-    setState(() {
-      data = listData;
-    });
-  }
+  // void loadCSV() async {
+  //   final rawData = await rootBundle.loadString(VocabularyList.csvfile);
+  //   List<List<dynamic>> listData = CsvToListConverter().convert(rawData);
+  //   setState(() {
+  //     data = listData;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) => loadCSV());
+    //WidgetsBinding.instance!.addPostFrameCallback((_) => loadCSV());
     return Scaffold(
       appBar: AppBar(
         title: Text('Word Sharing'),
@@ -45,7 +45,7 @@ class HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: ElevatedButton(
-              child: Text('Vocabulary List'),
+              child: Text('Vocabulary Lists'),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -61,7 +61,7 @@ class HomePageState extends State<HomePage> {
               onPressed: () {
                  Navigator.push(
                    context,
-                 MaterialPageRoute(builder: (context) => Quiz(data)),
+                 MaterialPageRoute(builder: (context) => Quiz()),
                  );
               },
               ),
