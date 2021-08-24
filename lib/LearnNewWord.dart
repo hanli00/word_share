@@ -12,7 +12,6 @@ class LearnNewWords extends StatefulWidget{
 class LearnNewWordsState extends State<LearnNewWords> {
   LearnNewWordsState(this.data);
   List<List<dynamic>> data;
-  var TimeA = DateTime.now();
   var times = 0;
   var finish = '';
 
@@ -33,8 +32,6 @@ class LearnNewWordsState extends State<LearnNewWords> {
 
   void Times(){
     if (data.length != 0){
-      print(data[1][1]);
-      print('aaaaaaaaaaaa');
       setState(() {
         times = times + 1;
       });
@@ -53,7 +50,7 @@ class LearnNewWordsState extends State<LearnNewWords> {
     var NewWord = Randnum(data);
     return Scaffold(
       appBar: AppBar(
-        title: Text(TimeA.toString()),
+        title: Text('New Words'),
         centerTitle: true,
       ),
       body: Column(
@@ -62,8 +59,6 @@ class LearnNewWordsState extends State<LearnNewWords> {
           Text(NewWord[2]),
           ElevatedButton(
               onPressed: (){
-                print(times);
-                print(data.length);
                 Times();
               },
               child: Text('Next')
