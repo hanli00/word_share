@@ -3,11 +3,9 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
-
 import 'package:word_share/vocabularyList.dart';
 
 class Test extends StatefulWidget {
-
   @override
   TestState createState() => TestState();
 }
@@ -23,7 +21,7 @@ class TestState extends State<Test> {
   }
   var index = 0;
   var score = 0;
-  var asked = List.filled(1, 0, growable: true);
+//  var asked = List.filled(1, 0, growable: true);
   var ChoiceA, ChoiceB, ChoiceC;
 
   void scoreadd(){
@@ -37,7 +35,6 @@ class TestState extends State<Test> {
 
   List<String> Randnum(){
     if(data.isEmpty) loadCSV();
-
     int randnum;
     List<String> question = ['',''];
     if (data.length != 0){

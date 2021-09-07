@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:word_share/LearnNewWord.dart';
+import 'package:word_share/NewWordLevel.dart';
 import 'vocabularyList.dart';
 import 'quiz.dart';
 import 'package:csv/csv.dart';
@@ -20,7 +20,6 @@ class HomePage extends StatefulWidget{
 
 class HomePageState extends State<HomePage> {
   List<List<dynamic>> data = [];
-
   // This function is triggered when the floating button is pressed
   // void loadCSV() async {
   //   final rawData = await rootBundle.loadString(VocabularyList.csvfile);
@@ -71,10 +70,9 @@ class HomePageState extends State<HomePage> {
               child: ElevatedButton(
                 child: Text('Learn New Words'),
                 onPressed: () {
-                  print(data.length);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LearnNewWords(data)),
+                    MaterialPageRoute(builder: (context) => NewWordLevel()),
                   );
                 },
               ),

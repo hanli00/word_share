@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:word_share/vocabularyList.dart';
-import 'test.dart';
-class Quiz extends StatefulWidget {
+import 'LearnNewWord.dart';
+
+class NewWordLevel extends StatefulWidget {
   @override
-  QuizState createState() => QuizState();
+  NewWordLevelState createState() => NewWordLevelState();
 }
 
-class QuizState extends State<Quiz> {
-
-
+class NewWordLevelState extends State<NewWordLevel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quiz"),
+        title: Text('Learn New Words'),
         centerTitle: true,
       ),
       body: Column(
@@ -23,7 +22,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/word1200.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('Elementary Level'),
@@ -33,7 +32,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/level1.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('High School Level 1'),
@@ -43,7 +42,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/level2.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('High School Level 2'),
@@ -53,7 +52,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/level3.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('High School Level 3'),
@@ -63,7 +62,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/level4.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('High School Level 4'),
@@ -73,7 +72,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/level5.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('High School Level 5'),
@@ -83,7 +82,7 @@ class QuizState extends State<Quiz> {
                 VocabularyList.csvfile = "assets/level6.csv";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Test()),
+                  MaterialPageRoute(builder: (context) => LearnNewWords()),
                 );
               },
               child: Text('High School Level 6'),
