@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pickfile.dart';
+import 'LoveWord.dart';
 
 class VocabularyList extends StatelessWidget {
   static String csvfile = "";
@@ -81,6 +82,15 @@ class VocabularyList extends StatelessWidget {
                 );
               },
               child: Text("High School Level 6"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoveWord()),
+                );
+              },
+              child: Text("LoveWordList"),
             ),
           ]
       ),

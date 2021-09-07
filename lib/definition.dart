@@ -4,12 +4,15 @@ import 'package:oxford_dictionary/oxford_dictionary.dart';
 import 'dart:convert' show utf8;
 import 'package:http/http.dart' as http;
 import 'package:audioplayers/audioplayers.dart';
+import 'pickfile.dart';
+import 'LoveWord.dart';
+
+var LoveWordOrNot = List.filled(datalength, false, growable: true);
+List<List<dynamic>> LoveWordList = [];
 
 class Definition extends StatefulWidget{
-  var pronounce;
   Definition(this.INDEX, this.data);
   int INDEX;
-
   List<List<dynamic>> data = [];
   @override
   DefinitionState createState() => DefinitionState(INDEX, data);
@@ -23,7 +26,6 @@ class DefinitionState extends State<Definition> {
   var mp3_url;
   List<List<dynamic>> data = [];
 
-
   void INDEXIncrease(){
     setState(() {
       INDEX = INDEX + 1;
@@ -36,7 +38,21 @@ class DefinitionState extends State<Definition> {
     });
   }
 
-  //= WordListState().INDEX;
+  void addtoLoveWord(int _index){
+    setState(() {
+      print(LoveWordList);
+      if(LoveWordOrNot[_index] == true){
+        //LoveWordList[0].add(_index);
+        LoveWordList.add(data[_index]);
+      } else {
+        //LoveWordList[0].remove(_index);
+        LoveWordList.remove(data[_index]);
+      }
+    });
+    print(LoveWordList);
+    print(LoveWordList.length);
+  }
+
   void play(String url) async {
     AudioPlayer audioPlayer = AudioPlayer();
     await audioPlayer.setUrl(url); // prepare the player with this audio but do not start playing
@@ -44,6 +60,7 @@ class DefinitionState extends State<Definition> {
     await audioPlayer.resume();
     pronounce = null;
   }
+
   Future<Word?> find(String wordString, [http.Client? client]) async {
     final dictionary = OxfordDictionary(
       'en',
@@ -74,8 +91,6 @@ class DefinitionState extends State<Definition> {
 
     // get sub senses
     final subSenses = senses.map((e) => e.map((e) => e.subSenses)).expand((subSenses) => subSenses).toList();
-
-
     setState(() {
       pronounce = pronunciations.last.last.phoneticSpelling;
       mp3_url = pronunciations.last.last.audioFile;
@@ -116,7 +131,6 @@ class DefinitionState extends State<Definition> {
   //
   // }
 
-
   @override
   Widget build(BuildContext context) {
     if(pronounce == null) {
@@ -128,13 +142,45 @@ class DefinitionState extends State<Definition> {
           ),
           body: Column(
             children: [
-              Text(data[INDEX][1]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  Text(data[INDEX][1]),
+                  Center(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            LoveWordOrNot[INDEX] = !LoveWordOrNot[INDEX];
+                            //data[INDEX][3] = !data[INDEX][3];
+                          });
+                          addtoLoveWord(INDEX);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: LoveWordOrNot[INDEX]//data[INDEX][3]
+                                ? Icon(
+                              Icons.check,
+                              size: 30.0,
+                              color: Colors.white,
+                            )
+                                : Icon(
+                              Icons.check_box_outline_blank,
+                              size: 30.0,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      )
+                  ),
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Loading..."),
                   IconButton(onPressed: () {
-
                   },
                       icon: Icon(Icons.downloading))
                 ],
@@ -144,16 +190,16 @@ class DefinitionState extends State<Definition> {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    INDEXDecrease();
+                  },
+                  child: Text('Back'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
                     INDEXIncrease();
                   },
                   child: Text('Next'),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    INDEXDecrease();
-                  },
-                  child: Text('Back'),
-                )
               ]
             )
             ],
@@ -161,14 +207,48 @@ class DefinitionState extends State<Definition> {
       );
     }
     else
-      WidgetsBinding.instance!.addPostFrameCallback((_) =>print("hello~~"));
+      //WidgetsBinding.instance!.addPostFrameCallback((_) =>print("hello~~"));
     return Scaffold(
         appBar: AppBar(
           title: Text(INDEX.toString()),
         ),
         body: Column(
           children: [
-            Text(data[INDEX][1]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:[
+                Text(data[INDEX][1]),
+                Center(
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          LoveWordOrNot[INDEX] = !LoveWordOrNot[INDEX];
+                          //data[INDEX][3] = !data[INDEX][3];
+                        });
+                        addtoLoveWord(INDEX);
+                        //LoveWordUsing.addtoLoveWord(INDEX, data);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: LoveWordOrNot[INDEX]//data[INDEX][3]
+                              ? Icon(
+                            Icons.check,
+                            size: 30.0,
+                            color: Colors.white,
+                          )
+                              : Icon(
+                            Icons.check_box_outline_blank,
+                            size: 30.0,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                    )
+                ),
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -182,20 +262,22 @@ class DefinitionState extends State<Definition> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      INDEXIncrease();
-                      },
-                    child: Text('Next'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
                       INDEXDecrease();
                       },
                     child: Text('Back'),
-                  )
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      INDEXIncrease();
+                    },
+                    child: Text('Next'),
+                  ),
                 ]
             )
           ],
         )
     );
   }
+
 }
+
